@@ -14,7 +14,8 @@ Step 9 - put temp = list[j]
         put list[j] = list[j+1]
         put list[j+1] = temp
         put j = j+1 and go to step 7
-Step 10 - STOP
+Step 10 - Print the sorted array
+Step 11 - STOP
 */
 
 #include <stdio.h>
