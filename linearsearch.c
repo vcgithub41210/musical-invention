@@ -4,14 +4,14 @@
 Algorithm:-
 Step 0 - Start
 Step 1 - initialise 'list' array, size, i = 0, target
-Step 1 - input the number of elements of the array as size
-Step 2 - input the elements of the array into the 'list' array
-Step 3 - input the element to be searched as target
-Step 4 - if i < size go to step 5, else go to step 7
-Step 5 - if list[i] == target, go to step 6, else put i = i+1 and go to step 4
-Step 6 - print the value of i and go to step 8
-Step 7 - print "the element is not found" and go to step 8
-Step 8 - STOP
+Step 2 - input the number of elements of the array as size
+Step 3 - input the elements of the array into the 'list' array
+Step 4 - input the element to be searched as target
+Step 5 - if i < size go to step 5, else go to step 7
+Step 6 - if list[i] == target, go to step 6, else put i = i+1 and go to step 4
+Step 7 - print the value of i and go to step 8
+Step 8 - print "the element is not found" and go to step 8
+Step 9 - STOP
 */
 
 #include <stdio.h>
