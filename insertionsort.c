@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 int Display(int *list,int size)
@@ -9,22 +10,24 @@ int Display(int *list,int size)
 	printf("\n");
 }
 
-int Selection_Sort(int *list,int size)
+int Insertion_Sort(int *list, int size)
 {
 	int temp;
-	for(int i = 0; i<size-1;i++)
+	for(int i = 1;i < size;i++)
 	{
-		int min = i;
-		for(int j = i+1;j<size;j++)
+		temp = list[i];
+		int j = i-1;
+		while(j>=0 && list[j] > temp)
 		{
-			if(list[j] < list[min]) min = j;
+			list[j+1] = list[j];
+			j--;
+			Display(list,size);
 		}
-		temp = list[min];
-		list[min] = list[i];
-		list[i] = temp;
+		list[j+1] = temp;
 		Display(list,size);
 	}
 }
+
 int main()
 {
 	int size;
@@ -36,7 +39,7 @@ int main()
 	{
 		scanf("%d",&list[i]);
 	}
-	Selection_Sort(list,size);
+	Insertion_Sort(list,size);
 	printf("***Final Sorted Array***\n");
 	Display(list,size);
 }
