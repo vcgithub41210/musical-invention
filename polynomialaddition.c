@@ -23,9 +23,37 @@ void Insertion_Sort_Structure(struct Term *polynomial,int size){
     }
 }
 
+int Polynomial_Addition(struct Term *result,struct Term *poly1,struct Term *poly2,int size1, int size2)
+{
+for(int i = 0; i < size1;i++) result[i] = poly1[i];
+    int length = size1;
+    for(int i = 0; i < size2; i++)
+    {
+	int power = poly2[i].varpower;
+	int start = 0;
+	int end = size1-1;
+	int middle;
+	while(start <= end)
+	{
+   	 	middle = (start+end)/2;
+    		if(result[middle].varpower == power) break;
+   		else if(result[middle].varpower > power) end = middle-1;
+    		else start = middle+1;
+	}
+	if(result[middle].varpower == power) result[middle].coefficient += poly2[i].coefficient;
+	else{
+    		result[length].coefficient = poly2[i].coefficient;
+    		result[length].varpower = poly2[i].varpower;
+    		length++;
+	}
+    }
+    return length;
+}
 int main(){
 
     //input the sizes and polynomials
+
+
     int size1,size2;
     printf("Enter the no of terms of polynomial 1: ");
     scanf("%d",&size1);
@@ -46,38 +74,24 @@ int main(){
     }
     Insertion_Sort_Structure(poly2,size2);
 
+
+
     //initialising result array
+
+
     struct Term result[size1+size2];
+
+
+
     //adding polynomial 1 to result
-    for(int i = 0; i < size1;i++) result[i] = poly1[i];
-    int length = size1;
-    //adding polynomial 2 to result
-    for(int i = 0; i < size2; i++)
-    {
-        int power = poly2[i].varpower;
-        int start = 0;
-        int end = size1-1;
-        int middle;
-        while(start <= end)
-        {
-            middle = (start+end)/2;
-            if(result[middle].varpower == power) break;
-            else if(result[middle].varpower > power) end = middle-1;
-            else start = middle+1;
-        }
-        if(result[middle].varpower == power) result[middle].coefficient += poly2[i].coefficient;
-        else{
-            result[length].coefficient = poly2[i].coefficient;
-            result[length].varpower = poly2[i].varpower;
-            length++;
-        }
-    }
+    int length = Polynomial_Addition(result,poly1,poly2,size1,size2);
+    
     Insertion_Sort_Structure(result,length);
+    printf("***SUM OF THE TWO POLYNOMIALS***\n\t"); 
     for(int i = length-1; i > -1;i--)
     {
         result[i].varpower!=0?printf("%dx^%d",result[i].coefficient,result[i].varpower):printf("%d",result[i].coefficient);
         if(i!=0) printf(" + ");
     }
-    //get the maximum degree of both polynomials so that we can print only those values
-    //that are upto the highest degree
+    printf("\n");
 }
