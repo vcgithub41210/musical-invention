@@ -1,24 +1,30 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Scanner;
 
 class Source {
-    public static int fib(int n,HashMap<Integer, Integer> memo) {
-        if(n ==0 || n==1){
-            return n;
+    public static int fib(int step,int index, int length,int[] memo) {
+        if(step == 0 && index == 0) return 1;
+        if(step == 0 && index != 0) return 0;
+        if(index < 0 || index >= length) return 0;
+        if (memo[step][index] != -1){
+            return memo[step][index];
         }
-        if (memo.containsKey(n)){
-            return memo.get(n);
+        int value = 0;
+        for(int i = index-1;i < index+2;i++)
+        {
+            value += fib(step-1,i,length,memo);
         }
-        int result =  fib(n-1, memo) + fib(n-2, memo);
-        memo.put(n,result);
-        return result;
+        memo[step][index] = value;
+        return value;
     }
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the the term to be obtained: ");
-        int n = sc.nextInt();
-        int result = fib(n, new HashMap<>());
-        System.out.println("The value is: "+result);
+        int[][] hash = new int[steps][length];
+        for(int i = 0; i < steps;i++)
+        {
+            for(int j = 0; j < steps;j++){
+                hash[i][j] = -1;
+            }
+        }
+        int result = fib(4,0,2,hash);
+        System.out.println(result);
     }
 }
