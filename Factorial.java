@@ -4,8 +4,7 @@ import java.util.Scanner;
 class Factorial
 {
 	public static int recursion(int number){
-		if(number == 1) return 1;
-		if(number < 1) return 0;
+		if(number <= 1) return 1;
 		return number * recursion(number-1);	
 	}
 	public static void main(String args[])
