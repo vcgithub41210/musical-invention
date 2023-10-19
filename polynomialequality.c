@@ -9,17 +9,18 @@ struct Term{
     int varpower;
 };
 
-void Insertion_Sort_Structure(struct Term *polynomial,int size){
-    for(int i = 1; i < size;i++)
+void Selection_Sort_Structure(struct Term *polynomial,int size){
+    struct Term temp;
+    for(int i = 0; i < size-1; i++)
     {
-        struct Term temp = polynomial[i];
-        int j = i-1;
-        while(j>=0 && polynomial[j].varpower > temp.varpower)
+        int min = i;
+        for(int j = i+1; j < size;j++)
         {
-            polynomial[j+1] = polynomial[j];
-            j--;
+            if(polynomial[j].varpower < polynomial[min].varpower) min = j;
         }
-        polynomial[j+1] = temp;
+        temp = polynomial[min];
+        polynomial[min] = polynomial[i];
+        polynomial[i] = temp;
     }
 }
 int Polynomial_Evaluation(struct Term *poly,int size,int x)
@@ -50,7 +51,7 @@ int main(){
     {
         scanf("%d,%d",&poly[i].coefficient,&poly[i].varpower);
     }
-    Insertion_Sort_Structure(poly,size);
+    Selection_Sort_Structure(poly,size);
     printf("Enter the value of x: ");
     scanf("%d",&x);
     int sum = Polynomial_Evaluation(poly,size,x);
