@@ -9,17 +9,18 @@ struct Term{
     int varpower;
 };
 
-void Insertion_Sort_Structure(struct Term *polynomial,int size){
-    for(int i = 1; i < size;i++)
+void Selection_Sort_Structure(struct Term *polynomial,int size){
+    struct Term temp;
+    for(int i = 0; i < size-1; i++)
     {
-        struct Term temp = polynomial[i];
-        int j = i-1;
-        while(j>=0 && polynomial[j].varpower > temp.varpower)
+        int min = i;
+        for(int j = i+1; j < size;j++)
         {
-            polynomial[j+1] = polynomial[j];
-            j--;
+            if(polynomial[j].varpower < polynomial[min].varpower) min = j;
         }
-        polynomial[j+1] = temp;
+        temp = polynomial[min];
+        polynomial[min] = polynomial[i];
+        polynomial[i] = temp;
     }
 }
 
@@ -63,7 +64,7 @@ int main(){
     {
         scanf("%d,%d",&poly1[i].coefficient,&poly1[i].varpower);
     }
-    Insertion_Sort_Structure(poly1,size1);
+    Selection_Sort_Structure(poly1,size1);
     printf("Enter the no of terms of polynomial 2: ");
     scanf("%d",&size2);
     struct Term poly2[size2];
@@ -72,7 +73,7 @@ int main(){
     {
         scanf("%d,%d",&poly2[i].coefficient,&poly2[i].varpower);
     }
-    Insertion_Sort_Structure(poly2,size2);
+    Selection_Sort_Structure(poly2,size2);
 
 
 
@@ -86,7 +87,7 @@ int main(){
     //adding polynomial 1 to result
     int length = Polynomial_Addition(result,poly1,poly2,size1,size2);
     
-    Insertion_Sort_Structure(result,length);
+    Selection_Sort_Structure(result,length);
     printf("***SUM OF THE TWO POLYNOMIALS***\n\t"); 
     for(int i = length-1; i > -1;i--)
     {
