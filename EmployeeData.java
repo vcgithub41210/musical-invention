@@ -66,9 +66,11 @@ class EmployeeData{
 		String Department = string.nextLine();
 		Manager person2 = new Manager(Name,Number,Address,Salary,Department);
 
-
+		System.out.println("OfficerDetails***");
 		person1.print_Salary();
 		System.out.println("specialization: "+ person1.specialization + "\n\n");
+		
+		System.out.println("ManagerDetails***");
 		person2.print_Salary();
 		System.out.println("department: "+ person2.department);
 	}
