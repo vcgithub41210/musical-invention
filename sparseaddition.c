@@ -45,56 +45,53 @@ int sparseAddition(int finalsparse[][3],int sparse1[][3],int sparse2[][3],int ro
 	int current = 1;
 	int x = 1;
 	int y = 1;
+	int add_left(){
+		finalsparse[current][0] = sparse1[x][0];
+		finalsparse[current][1] = sparse1[x][1];
+		finalsparse[current][2] = sparse1[x][2];
+		x++;
+	}
+	int add_right(){
+		finalsparse[current][0] = sparse2[y][0];
+		finalsparse[current][1] = sparse2[y][1];
+		finalsparse[current][2] = sparse2[y][2];
+		y++;
+	}
+	int add_both(){
+		finalsparse[current][0] = sparse2[y][0];
+		finalsparse[current][1] = sparse2[y][1];
+		finalsparse[current][2] = sparse2[y][2] + sparse1[x][2];
+		y++;
+		x++;
+	}
 	while(x< count1 || y< count2)
 	{
 		if(x == count1 || y == count2)
 		{
 			if(x==count1){
-				finalsparse[current][0] = sparse2[y][0];
-				finalsparse[current][1] = sparse2[y][1];
-				finalsparse[current][2] = sparse2[y][2];
-				y++;
+				add_right();
 			}
 			else{
-				finalsparse[current][0] = sparse1[x][0];
-				finalsparse[current][1] = sparse1[x][1];
-				finalsparse[current][2] = sparse1[x][2];
-				x++;
+				add_left();
 			};
 		}else if(sparse1[x][0] == sparse2[y][0])
 		{
 			if(sparse1[x][1] == sparse2[y][1])
 			{
-				finalsparse[current][0] = sparse2[y][0];
-				finalsparse[current][1] = sparse2[y][1];
-				finalsparse[current][2] = sparse2[y][2] + sparse1[x][2];
-				y++;
-				x++;
+				add_both();
 			}
 			else if(sparse1[x][1] > sparse2[y][1]){
-				finalsparse[current][0] = sparse2[y][0];
-				finalsparse[current][1] = sparse2[y][1];
-				finalsparse[current][2] = sparse2[y][2];
-				y++;
+				add_right();
 			}else
 			{
-				finalsparse[current][0] = sparse1[x][0];
-				finalsparse[current][1] = sparse1[x][1];
-				finalsparse[current][2] = sparse1[x][2];
-				x++;
+				add_left();
 			}
 		}else if(sparse1[x][0] > sparse2[y][0])
 		{
-			finalsparse[current][0] = sparse2[y][0];
-			finalsparse[current][1] = sparse2[y][1];
-			finalsparse[current][2] = sparse2[y][2];
-			y++;
+			add_right();
 		}else
 		{
-			finalsparse[current][0] = sparse1[x][0];
-			finalsparse[current][1] = sparse1[x][1];
-			finalsparse[current][2] = sparse1[x][2];
-			x++;
+			add_left();
 		}
 		current++;
 	}
@@ -124,8 +121,6 @@ int main()
     //converting to sparse representation
     int sparseForm1[10][3];
     int count1 = sparseRepresentation(matrix1,sparseForm1,row1,column1);
-
-
     //SECOND MATRIX
     int row2 = row1,column2 = column1;
     int matrix2[10][10];
@@ -140,14 +135,10 @@ int main()
     }
     //converting to sparse representation
     int sparseForm2[10][3];
-    int count2 = sparseRepresentation(matrix2,sparseForm2,row2,column2);
-    
-    
+    int count2 = sparseRepresentation(matrix2,sparseForm2,row2,column2); 
     //ADDITION
     int finalsparseForm[20][3];
     int current = sparseAddition(finalsparseForm,sparseForm1,sparseForm2,row1,column1,count1+1,count2+1);
-
-
     //DISPLAY OUTPUT   
     printf("***FINAL SPARSE MATRIX****\n");
     Display(finalsparseForm,current,3);
