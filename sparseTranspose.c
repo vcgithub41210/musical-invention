@@ -81,4 +81,8 @@ int main()
 	sparseTranspose(sparseform,transpose,count+1,3);
 	printf("***Sparse Transpose Representation***\n\n");
 	Display(transpose,count+1,3);
+
+	printf("***Sparsity of the matrix***\n\t\t");
+	double sparsity = (double)((row*column)-count)/(row*column);
+	printf("%lf\n", sparsity);
 }
