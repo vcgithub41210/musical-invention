@@ -71,21 +71,19 @@ int sparseRepresentation(int array[][10],int sparse[][3],int row,int column){
 int main()
 {
 	int row,column,matrix[10][10];
-	printf("Enter the number of rows: ");
+	printf("Enter the number of rows/number of columns of the square matrix: ");
 	scanf("%d",&row);
-	printf("Enter the number of columns(same as number of rows): ");
-	scanf("%d",&column);
 	
 	printf("Enter the elements of the array:\n");
 	for(int i = 0; i < row; i++)
 	{
-		for(int j = 0; j < column; j++)
+		for(int j = 0; j < row; j++)
 		{
 			scanf("%d",&matrix[i][j]);
 		}
 	}
 	int sparseform[10][3];
-	int count = sparseRepresentation(matrix,sparseform,row,column);
+	int count = sparseRepresentation(matrix,sparseform,row,row);
 	
 	//finding transpose
 	int transpose[10][3];
