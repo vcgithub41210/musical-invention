@@ -90,5 +90,11 @@ int main()
 	//finding transpose
 	int transpose[10][3];
 	sparseTranspose(sparseform,transpose,count+1,3);
+
+	//displaying sparse and sparse transpose
+	printf("***Sparse Matrix Representation***\n");
+	Display(sparseform,count+1,3);
+	printf("***Sparse Transpose***\n");
+	Display(transpose,count+1,3);
 	symmetricTest(sparseform,transpose,count+1);
 }
