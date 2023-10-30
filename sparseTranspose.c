@@ -73,11 +73,11 @@ int main()
 			scanf("%d",&matrix[i][j]);
 		}
 	}
-	int sparseform[10][3];
+	int sparseform[100][3];
 	int count = sparseRepresentation(matrix,sparseform,row,column);
 	
 	//finding transpose
-	int transpose[10][3];
+	int transpose[100][3];
 	sparseTranspose(sparseform,transpose,count+1,3);
 	printf("***Sparse Transpose Representation***\n\n");
 	Display(transpose,count+1,3);
