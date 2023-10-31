@@ -68,31 +68,16 @@ int sparseAddition(int finalsparse[][3],int sparse1[][3],int sparse2[][3],int ro
 	{
 		if(x == count1 || y == count2)
 		{
-			if(x==count1){
-				add_right();
-			}
-			else{
-				add_left();
-			};
+			if(x==count1) add_right();
+			else add_left();
 		}else if(sparse1[x][0] == sparse2[y][0])
 		{
-			if(sparse1[x][1] == sparse2[y][1])
-			{
-				add_both();
-			}
-			else if(sparse1[x][1] > sparse2[y][1]){
-				add_right();
-			}else
-			{
-				add_left();
-			}
-		}else if(sparse1[x][0] > sparse2[y][0])
-		{
-			add_right();
-		}else
-		{
-			add_left();
+			if(sparse1[x][1] == sparse2[y][1]) add_both();
+			else if(sparse1[x][1] > sparse2[y][1]) add_right();
+			else add_left();
 		}
+		else if(sparse1[x][0] > sparse2[y][0]) add_right();
+		else add_left();
 		current++;
 	}
 	finalsparse[0][2] = current-1;
