@@ -70,7 +70,7 @@ int sparseRepresentation(int array[][10],int sparse[][3],int row,int column){
 
 int main()
 {
-	int row,column,matrix[10][10];
+	int row,matrix[10][10];
 	printf("Enter the number of rows/number of columns of the square matrix: ");
 	scanf("%d",&row);
 	
