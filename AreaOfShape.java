@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.Scanner;
 
 class FindArea{
-	double area(float radius)
+	float area(float radius)
 	{
-		return 3.14 * radius * radius;
+		return (float)3.14 * radius * radius;
 	}
 	float area(float length,float breadth)
 	{
