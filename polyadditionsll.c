@@ -144,3 +144,71 @@ int main(){
     printf("\n\n***Resultant Polynomial***\n");
     Display(result);
 }
+
+//Sample Output
+/**
+***FIRST POLYNOMIAL***
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 2
+pow=> 5
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 6
+pow=> 3
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 10
+pow=> 1
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> -8
+pow=> 2
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> -12
+pow=> 0
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> -4
+pow=> 4
+Would you like to add another term? (1)Yes      (2)No
+2
+***SECOND POLYNOMIAL***
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 1
+pow=> 4
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 2
+pow=> 2
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> -3
+pow=> 3
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 1
+pow=> 0
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> -5
+pow=> 1
+Would you like to add another term? (1)Yes      (2)No
+1
+coeff=> 17
+pow=> 2
+Term with the given power already exists!
+Would you like to add another term? (1)Yes      (2)No
+2
+***First Polynomial***
+2 x^5 + -4 x^4 + 6 x^3 + -8 x^2 + 10 x^1 + -12
+***Second Polynomial***
+1 x^4 + -3 x^3 + 2 x^2 + -5 x^1 + 1
+Adding two polynomials...
+
+
+***Resultant Polynomial***
+2 x^5 + -3 x^4 + 3 x^3 + -6 x^2 + 5 x^1 + -11
+*/
