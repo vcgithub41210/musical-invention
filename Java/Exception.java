@@ -30,6 +30,10 @@
  * 
  * Note that there is the usage of ArithmeticException in the catch block parameter section, this is so that you can catch a specific Exception in the try block
  * It can also be replaced with "Exception e". This will help to catch any error that occurs in the try block
+ * Note that there is the usage of printStackTrace() function
+ * The printStackTrace() method in Java is a tool used to handle exceptions and errors.
+ * It is a method of Java's throwable class which prints the throwable along with other details like the line number and class name where the exception occurred.
+ * printStackTrace() is very useful in diagnosing exceptions.
  */
 
 import java.io.*;

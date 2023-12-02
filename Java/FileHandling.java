@@ -10,8 +10,8 @@
  * The syntax is as follows -  File name_of_object = new File("filename or directory of file")
  * It is important to create this object inside a try block as the program may file to create the object and throw errors
  * The file need not necessarily exist in your computer, if not you can create the file using the object.. which is one of the reason to use the File class
- * One error that could be thrown is IOException due to passing non-existent directory
- * so even though passing non-existent filename is possible, it is not possible to pass non-existent directory
+ * Passing incorrect directory will throw an error which can be fixed by using the mkdir() method of the File object
+ * This should be done only if you intend to
  * 
  * Once you have created the object, you can use the createNewFile() method of the object to create a new file
  * createNewFile() method returns a boolean, if the file does not exist then it creates the file and returns true
