@@ -12,6 +12,10 @@
  * The file need not necessarily exist in your computer, if not you can create the file using the object.. which is one of the reason to use the File class
  * One error that could be thrown is IOException due to passing non-existent directory
  * so even though passing non-existent filename is possible, it is not possible to pass non-existent directory
+ * 
+ * Once you have created the object, you can use the createNewFile() method of the object to create a new file
+ * createNewFile() method returns a boolean, if the file does not exist then it creates the file and returns true
+ * If the file already exists then it returns false, this can be used to check for the existence of file. It is necessary to enclose this code within try block
  */
 
 import java.io.*;
