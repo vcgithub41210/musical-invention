@@ -1,6 +1,18 @@
-/*
-This is a program to demonstrate how to handle with files
-*/
+/**
+ * This is a program to demonstrate how to handle with files
+ * Files are the main source of storing data and it is important to know the ways of manipulating files and its data
+ * In Java, to use files we have to create an object of the class File
+ * The File class is present inside the io package and can be imported using the following syntax;
+ * syntax -  import java.io.File
+ * Additionally you can also use '*' operator to import everything inside the io package as we would be needing more than just File object to deal with Files
+ * 
+ * A File object is created using the 'new' keyword and the File() constructor, passing the name of the file or the directory of the file
+ * The syntax is as follows -  File name_of_object = new File("filename or directory of file")
+ * It is important to create this object inside a try block as the program may file to create the object and throw errors
+ * The file need not necessarily exist in your computer, if not you can create the file using the object.. which is one of the reason to use the File class
+ * One error that could be thrown is IOException due to passing non-existent directory
+ * so even though passing non-existent filename is possible, it is not possible to pass non-existent directory
+ */
 
 import java.io.*;
 
