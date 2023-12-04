@@ -53,4 +53,17 @@ public class MultiThread {
        t3.start();
    }
 }
- 
+
+//sample output
+/*
+1
+4
+27
+16
+125
+36
+343
+64
+729
+100
+*/

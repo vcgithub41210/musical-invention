@@ -98,3 +98,33 @@ class DLL{
         while(operand != 3);
     }
 }
+
+//sample output
+/*
+Enter the operation to perform
+(1)Insert at end
+(2)Delete Node
+(3)Quit
+=> 1
+Enter the data of the new node: 
+10
+<-[10]->
+=> 1
+Enter the data of the new node: 45
+<-[10]-><-[45]->
+=> 1
+Enter the data of the new node: 208
+<-[10]-><-[45]-><-[208]->
+=> 2
+Enter the data of the node to be deleted: 45
+<-[10]-><-[208]->
+=> 2
+Enter the data of the node to be deleted: 10
+<-[208]->
+=> 2
+Enter the data of the node to be deleted: 
+208
+=> 2
+List is empty!
+=> 3
+*/
