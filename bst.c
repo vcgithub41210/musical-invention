@@ -56,64 +56,40 @@ void insert(int data){
     }
 }
 
-void printSpaces(int n) {
-    for (int i = 0; i < n; ++i)
-        printf(" ");
-}
 
 void levelorder(){
     enqueue(root);
-    int index= 1;
-    int level = 0;
-    int spaces = 16/pow(2,level);
     while(rear != -1){
         node *temp = dequeue();
-        printSpaces(spaces);
         printf("%d ",temp->data);
         if(temp->left != NULL) enqueue(temp->left);
         if(temp->right != NULL) enqueue(temp->right);
-        if(index == pow(2,level)){
-            index = 1;
-            level += 1;
-            printf("\n");
-            spaces = 16/pow(2,level);
-            continue;
-        }
-        index += 1;
     }
 }
 
 
-// Function to print the BST in an aesthetic way
-void printBST(node *root, int space) {
-    if (root == NULL)
-        return;
+// void printSpaces(int n) {
+//     for (int i = 0; i < n; ++i)
+//         printf(" ");
+// }
+// // Function to print the BST in an aesthetic way
+// void printBST(node *root, int space) {
+//     if (root == NULL)
+//         return;
 
-    // Increase distance between levels
-    space += 5;
+//     // Increase distance between levels
+//     space += 5;
 
-    // Process right child first
-    printBST(root->right, space);
+//     // Process right child first
+//     printBST(root->right, space);
 
-    // Print current node after space
-    printf("\n");
-    printSpaces(space);
-    printf("%d\n", root->data);
+//     // Print current node after space
+//     printf("\n");
+//     printSpaces(space);
+//     printf("%d\n", root->data);
 
-    // Process left child
-    printBST(root->left, space);
-}
-
-
-void aesthethicdisplay(){
-    //some function that prints spaces
-    //some function that checks for when to print newline and reduce number of spaces
-    //
-}
-
-// void display(){
-
-
+//     // Process left child
+//     printBST(root->left, space);
 // }
 
 int main(){
@@ -127,4 +103,5 @@ int main(){
         insert(data);
     }
     levelorder();
+    // printBST(root,0);
 }
