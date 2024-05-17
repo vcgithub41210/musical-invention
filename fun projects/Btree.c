@@ -2,22 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-//our goal is to implement a btree in c language
-// this involves operations like addition deletion and searching
-// maybe display as well
-// so hence we need atleast 3 functions
-// on top of that we need to sort the array of items inside each node and hence we need a sorting function
+//Implementation of btree
+//btree is used in data storage in secondary memory
+//in a btree, limited number of records are stored in nodes along with pointers pointing to next node
+//in a btree, all leaf nodes must be in the same level
+//for a btree of order "p" (p pointers), each node except the root node must have atleast p+1/2 pointers (p is odd)
+//for p pointers there are p-1 records, and hence each node expect the root must have atleast p-1/2 pointers
 
+//NODE STRUCTURE
 typedef struct node{
-  int length; // to keep track of length of the array
+  int length;   //to keep track of the length of the array
   int array[5]; //array of data
-  struct node *pointer[6]; //array of pointers
+  struct node *pointer[6];    //array of pointers pointing to next nodes
 } node;
-
 node *root; //root node of the tree 
-            // btree has an instruction which specifies that every node must have atmost 2 elements except the root
 
-int binary_search(int data,int array[],int length){
+//FUNCTIONS
+
+
+int binary_search(int data,int array[],int length){   //searching for index for insertion inside a sorted array
   int start = 0;
   int end = length-1;
   int middle;
@@ -31,7 +34,8 @@ int binary_search(int data,int array[],int length){
   return start;
 }
 
-int insert_into_node(node *nd,int data,int index,node *ptr){
+
+int insert_into_node(node *nd,int data,int index,node *ptr){    //inserting a new record into the given node
   if(nd == root && nd->length == 0){
     nd->array[0] = data;
   }
@@ -46,7 +50,9 @@ int insert_into_node(node *nd,int data,int index,node *ptr){
   }
   nd->length++;
 }
-void transfer_data(node *temp,node *nd,int start,int end){
+
+
+void transfer_data(node *temp,node *nd,int start,int end){    //ensures that a node always has atleast p-1/2 records or p+1/2 pointers
   int j = 0;
   for(int i = start;i < end;i++){
     temp->array[j] = nd->array[i];
@@ -56,7 +62,9 @@ void transfer_data(node *temp,node *nd,int start,int end){
   temp->pointer[j] = nd->pointer[j];
   temp->length = 2;
 }
-node *split_node(node *nd){
+
+
+node *split_node(node *nd){   //to split the node exactly at the center
   node *tmp1 = (node*)malloc(sizeof(node));
   transfer_data(tmp1,nd,0,2);
   node *tmp2 = (node*)malloc(sizeof(node));
@@ -68,14 +76,16 @@ node *split_node(node *nd){
   tmp->length = 1;
   return tmp;
 }
-node *traverse_node(node *nd,int data){
+
+
+node *traverse_node(node *nd,int data){   //to search for the correct index of insertion
   int length = nd->length;
   if (length == 0){
     insert_into_node(nd,data,0,NULL);
   }
   else{
     node *temp;
-    int index = binary_search(data,nd->array,length); //to find the correct pointer where 
+    int index = binary_search(data,nd->array,length); 
     for(int i = 0 ; i < nd->length; i++){
       printf("%d\t",nd->array[i]);
     }
@@ -96,7 +106,9 @@ node *traverse_node(node *nd,int data){
     else return nd;
   }
 }
-void display(node *nd, int level) {
+
+
+void display(node *nd, int level) {   //to display the btree as levels
   if (nd != NULL) {
     printf("Level %d [", level);
     for (int i = 0; i < nd->length; i++) {
@@ -108,15 +120,18 @@ void display(node *nd, int level) {
     }
   }
 }
+
+
 int main(){
   root = (node*)malloc(sizeof(node));
   int operation;
   while(operation != 0){
-    printf("Enter the operation you want to perform;\n1) Insert\n2)Delete\n3)Search\n0)Quit");
+    printf("Enter the operation you want to perform;\n1) Insert\n2) Delete\n3) Search\n0) Quit\n");
     scanf("%d",&operation);
     int data;
     switch(operation){
       case 0:
+        //quit
         continue;
       case 1:
         if(root->length < 5){
@@ -128,11 +143,11 @@ int main(){
           printf("Root is full\n");
         break;
       case 2:
-        // the deletzae function called
+        // the delete function called
         printf("the delete function has been called\n");
         break;
       case 3:
-        //search functzaion called
+        //search function called
         printf("the search function has been called\n");
         break;
       default:
@@ -143,6 +158,5 @@ int main(){
       display(root, 0);
     }
     printf("\n");
-
   }
 }
