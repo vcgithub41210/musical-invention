@@ -15,7 +15,7 @@ typedef struct node{
 } node;
 
 node *root; //root node of the tree 
-                   // btree has an instruction which specifies that every node must have atmost 2 elements except the root
+            // btree has an instruction which specifies that every node must have atmost 2 elements except the root
 
 int binary_search(int data,int array[],int length){
   int start = 0;
@@ -31,22 +31,20 @@ int binary_search(int data,int array[],int length){
   return start;
 }
 
-//[1,3,7,12,14]
 int insert_into_node(node *nd,int data,int index,node *ptr){
   if(nd == root && nd->length == 0){
     nd->array[0] = data;
   }
   else{
-    nd->pointer[nd->length + 1] = nd->pointer[nd->length];
     for(int i = nd->length; i > index; i--){
       nd->array[i] = nd->array[i-1];
       if(nd->pointer[i])nd->pointer[i+1] = nd->pointer[i];
     }
+    nd->pointer[index+1] = nd->pointer[index];
     nd->array[index] = data;
     nd->pointer[index] = ptr;
   }
   nd->length++;
-  printf("Hello\tHello\n");
 }
 void transfer_data(node *temp,node *nd,int start,int end){
   int j = 0;
@@ -67,37 +65,47 @@ node *split_node(node *nd){
   tmp->array[0] = nd->array[2];
   tmp->pointer[0] = tmp1;
   tmp->pointer[1] = tmp2;
+  tmp->length = 1;
   return tmp;
 }
-node *traverse_node(node *root,int data){
-  int length = root->length;
+node *traverse_node(node *nd,int data){
+  int length = nd->length;
   if (length == 0){
-    insert_into_node(root,data,0,NULL);
+    insert_into_node(nd,data,0,NULL);
   }
   else{
     node *temp;
-    int index = binary_search(data,root->array,length); //to find the correct pointer where 
-    if(root->pointer[index] != NULL){
-      temp = traverse_node(root->pointer[index],data);
-      if(temp != NULL){
-        root->pointer[index] = temp->pointer[1];
-        insert_into_node(root,temp->array[0],index,temp->pointer[0]);
-      }
-      else return NULL;
-  }
-    else{
-      insert_into_node(root,data,index,NULL);
-      if(root->length == 5){
-        temp = split_node(root);
-        return temp;
-      }
+    int index = binary_search(data,nd->array,length); //to find the correct pointer where 
+    for(int i = 0 ; i < nd->length; i++){
+      printf("%d\t",nd->array[i]);
     }
-    if(root->length == 5) return split_node(root);
-    //for(int i = length; i > index;i--){
-    //  root->array[i] = root->array[i-1];
-    //}
-   // root->array[index] = data;
-    //root->length++;
+    printf("\nindex: %d\n\n",index);
+    if(nd->pointer[index] != NULL){
+      temp = traverse_node(nd->pointer[index],data);
+      if(temp != nd->pointer[index]){
+        nd->pointer[index] = temp->pointer[1];
+        insert_into_node(nd,temp->array[0],index,temp->pointer[0]);
+      }
+      else return nd;
+    }
+    else{
+      insert_into_node(nd,data,index,NULL);
+
+    }
+    if(nd->length == 5) return split_node(nd);
+    else return nd;
+  }
+}
+void display(node *nd, int level) {
+  if (nd != NULL) {
+    printf("Level %d [", level);
+    for (int i = 0; i < nd->length; i++) {
+      printf(" %d", nd->array[i]);
+    }
+    printf(" ]\n");
+    for (int i = 0; i <= nd->length; i++) {
+      display(nd->pointer[i], level + 1);
+    }
   }
 }
 int main(){
@@ -106,12 +114,12 @@ int main(){
   while(operation != 0){
     printf("Enter the operation you want to perform;\n1) Insert\n2)Delete\n3)Search\n0)Quit");
     scanf("%d",&operation);
+    int data;
     switch(operation){
       case 0:
         continue;
       case 1:
         if(root->length < 5){
-          int data;
           printf("Enter the data: ");
           scanf("%d",&data);
           root = traverse_node(root,data);
@@ -131,11 +139,8 @@ int main(){
         printf("invalid operation! try again\n");
         break;
     }
-    if(root != NULL){
-      for (int i = 0; i < root->length;i++){
-        printf("%d\t",root->array[i]); 
-      }
-      printf("\n");
+    if (root != NULL) {
+      display(root, 0);
     }
     printf("\n");
 
