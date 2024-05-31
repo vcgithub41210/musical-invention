@@ -1,0 +1,23 @@
+echo is a command to display the contents passed as arguement
+cat is a command used to print the contents of a file
+Here are some basic linux commands and bash scripting information
+
+bash is an environment provided to run files and executables
+to create a shell file we can use the touch command and specify the name of the file followed by a ".sh" extension
+once you create a shell file you can then open it and edit the file
+once edited the file, you can make it into an executable by using the chmod command
+
+chmod command is used to bring modifications to a file to allow permissions to write read or execute to different users.
+The different users are:
+the owner (u),
+the file group (g),
+the people that are neither part of the file group nor the owner called others (o)
+
+  }
+the permissions include read(r),write(w),execute(x)}
+the persmissions can be provided by using the + operand or removed from a user by using the - operand
+eg: chmod o-w file.txt ==> removes(-) the permission to write(w) into file.txt from the others (o)
+eg: chmod u+rx file.txt ==> provides(+) the permission to read(r) and execute(x) file.txt to the owner(u)
+
+Thus using the chmod command, we can make the shell file into an executable by typing the command: chmod +x filename.sh
+this converts the .sh file into a executable and then by simply typing the command: ./filename.sh ==> we can execute the file
