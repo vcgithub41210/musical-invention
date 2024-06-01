@@ -7,8 +7,7 @@
 # calling a function is done by simply putting the name without the () brackets, you can also specify any positional arguements
 #
 
-printf "Enter two numbers: "  
-read INPUT                     #reading the input here
+read -p "Enter two numbers: " INPUT     #you can also specify the prompt message from the read command itself instead of a separate echo statement, followed by the destination variable to input the values. The -p prevents the cursor from moving to next line
 
 operation(){                 #function declaration
   printf "Enter the operation (add,subtract,multiply,divide,quit): "
